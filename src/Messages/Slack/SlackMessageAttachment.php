@@ -3,8 +3,10 @@
 namespace Illuminate\Notifications\Messages\Slack;
 
 
-class SlackMessageAttachment extends SlackMessageBlockContainer
+class SlackMessageAttachment extends SlackMessagePayload
 {
+	use Blocks\SlackMessageBlockContainer;
+
 	const ColorGood = 'good';
 	const ColorWarning = 'warning';
 	const ColorDanger = 'danger';

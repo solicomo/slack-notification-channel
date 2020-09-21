@@ -4,8 +4,10 @@ namespace Illuminate\Notifications\Messages\Slack;
 
 use Closure;
 
-class SlackMessage extends SlackMessageBlockContainer
+class SlackMessage extends SlackMessagePayload
 {
+	use Blocks\SlackMessageBlockContainer;
+
 	/**
 	 * Additional request options for the Guzzle HTTP client.
 	 *

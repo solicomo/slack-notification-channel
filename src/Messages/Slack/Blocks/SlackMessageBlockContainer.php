@@ -1,10 +1,10 @@
 <?php
 
-namespace Illuminate\Notifications\Messages\Slack;
+namespace Illuminate\Notifications\Messages\Slack\Blocks;
 
 use Closure;
 
-class SlackMessageBlockContainer extends SlackMessagePayload
+trait SlackMessageBlockContainer
 {
 	/**
 	 * Set blocks for the message.
@@ -22,12 +22,13 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	/**
 	 * Add a Block for the message.
 	 *
+	 * @param  string  $type
 	 * @param  \Closure  $callback
 	 * @return $this
 	 */
-	public function addBlock(Closure $callback)
+	public function addBlock(string $type, Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlock;
+		$block = Blocks\SlackMessageBlock::create($type);
 
 		$callback($block);
 
@@ -44,13 +45,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockActions(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockActions;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('actions', $callback);
 	}
 
 	/**
@@ -61,13 +56,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockContext(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockContext;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('context', $callback);
 	}
 
 	/**
@@ -78,13 +67,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockDivider(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockDivider;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('divider', $callback);
 	}
 
 	/**
@@ -95,13 +78,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockFile(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockFile;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('file', $callback);
 	}
 
 	/**
@@ -112,13 +89,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockHeader(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockHeader;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('header', $callback);
 	}
 
 	/**
@@ -129,13 +100,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockImage(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockImage;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('image', $callback);
 	}
 
 	/**
@@ -146,13 +111,7 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockInput(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockInput;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('input', $callback);
 	}
 
 	/**
@@ -163,12 +122,6 @@ class SlackMessageBlockContainer extends SlackMessagePayload
 	 */
 	public function addBlockSection(Closure $callback)
 	{
-		$block = new Blocks\SlackMessageBlockSection;
-
-		$callback($block);
-
-		$this->payload['blocks'][] = $block->toArray();
-
-		return $this;
+		return $this->addBlock('section', $callback);
 	}
 }

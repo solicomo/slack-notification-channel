@@ -6,6 +6,17 @@ use Illuminate\Notifications\Messages\Slack\SlackMessagePayload;
 
 class SlackMessageBlock extends SlackMessagePayload
 {
+	protected static $blocks = [
+		'actions' => SlackMessageBlockActions::class,
+		'context' => SlackMessageBlockContext::class,
+		'divider' => SlackMessageBlockDivider::class,
+		'file' => SlackMessageBlockFile::class,
+		'header' => SlackMessageBlockHeader::class,
+		'image' => SlackMessageBlockImage::class,
+		'input' => SlackMessageBlockInput::class,
+		'section' => SlackMessageBlockSection::class,
+	];
+
 	/**
 	 * Create a new Slack Message Block instance.
 	 *
@@ -54,5 +65,21 @@ class SlackMessageBlock extends SlackMessagePayload
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Create a new Block instance.
+	 *
+	 * @param  string  $type
+	 * @param  string|null  $block_id
+	 * @return mixed a new Block instance
+	 */
+	public static function create(string $type, $block_id = null)
+	{
+		if (array_key_exists($type, static::$blocks)) {
+			return new static::$blocks[$type]($block_id);
+		}
+
+		return null;
 	}
 }
