@@ -4,7 +4,7 @@ namespace Illuminate\Notifications\Channels;
 
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Messages\Slack\SlackMessage;
 
 class SlackChannel
 {
@@ -53,7 +53,7 @@ class SlackChannel
 	/**
 	 * Build up a JSON payload for the Slack webhook.
 	 *
-	 * @param  Illuminate\Notifications\Messages\SlackMessage  $message
+	 * @param  Illuminate\Notifications\Messages\Slack\SlackMessage  $message
 	 * @param  bool $auth
 	 * @return array
 	 */
