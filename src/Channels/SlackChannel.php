@@ -35,17 +35,17 @@ class SlackChannel
 	 */
 	public function send($notifiable, Notification $notification)
 	{
-		$incomingWebhook = $notifiable->routeNotificationFor('slack', $notification);
+		$incomingWebHookUrl = $notifiable->routeNotificationFor('slack', $notification);
 
-		if (!empty($incomingWebhook)) {
-			return $this->http->post($incomingWebhook, $this->buildJsonPayload(
+		if (!empty($incomingWebHookUrl)) {
+			return $this->http->post($incomingWebHookUrl, $this->buildJsonPayload(
 				$notification->toSlack($notifiable), false
 			));
 		}
 
-		$url = 'https://slack.com/api/chat.postMessage';
+		$webAPIUrl = 'https://slack.com/api/chat.postMessage';
 
-		return $this->http->post($incomingWebhook, $this->buildJsonPayload(
+		return $this->http->post($webAPIUrl, $this->buildJsonPayload(
 			$notification->toSlack($notifiable), true
 		));
 	}

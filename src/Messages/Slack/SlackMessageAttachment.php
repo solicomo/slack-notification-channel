@@ -7,9 +7,9 @@ class SlackMessageAttachment extends SlackMessagePayload
 {
 	use Blocks\SlackMessageBlockContainer;
 
-	const ColorGood = 'good';
-	const ColorWarning = 'warning';
-	const ColorDanger = 'danger';
+	public const ColorGood = 'good';
+	public const ColorWarning = 'warning';
+	public const ColorDanger = 'danger';
 
 	/**
 	 * Set the color of the attachment.
@@ -18,7 +18,7 @@ class SlackMessageAttachment extends SlackMessagePayload
 	 */
 	public function good()
 	{
-		$this->payload['color'] = ColorGood;
+		$this->payload['color'] = self::ColorGood;
 
 		return $this;
 	}
@@ -30,7 +30,7 @@ class SlackMessageAttachment extends SlackMessagePayload
 	 */
 	public function warning()
 	{
-		$this->payload['color'] = ColorWarning;
+		$this->payload['color'] = self::ColorWarning;
 
 		return $this;
 	}
@@ -42,7 +42,7 @@ class SlackMessageAttachment extends SlackMessagePayload
 	 */
 	public function danger()
 	{
-		$this->payload['color'] = ColorDanger;
+		$this->payload['color'] = self::ColorDanger;
 
 		return $this;
 	}
