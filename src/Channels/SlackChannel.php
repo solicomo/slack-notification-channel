@@ -59,7 +59,7 @@ class SlackChannel
 	 */
 	protected function buildJsonPayload(SlackMessage $message, $auth = false)
 	{
-		$options = array_merge(['json' => $message->toArray()], $message->http);
+		$options = array_merge(['json' => $message->toArray()], $message->options);
 
 		if (!$auth) {
 			return $options;
